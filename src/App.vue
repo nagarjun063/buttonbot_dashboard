@@ -93,6 +93,7 @@
 <script>
 const session_username = "something";
 const session_orgname = "something";
+const session_password="something";
 import Vue from "vue";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -108,6 +109,7 @@ export default {
     return {
       session_username,
       session_orgname,
+      session_password,
       drawer: true,
       username: null,
       password: null,
@@ -132,8 +134,10 @@ export default {
         this.username == "admin" &&
         this.password == "admin" &&
         this.organisation == "admin"
+      
       ) {
         Vue.prototype.$session_username = this.username;
+        Vue.prototype.$session_password= this.password;
         Vue.prototype.$session_orgname = this.organisation;
         setTimeout(function () {
           Vue.nextTick(function () {

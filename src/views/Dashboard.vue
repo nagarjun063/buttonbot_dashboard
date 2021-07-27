@@ -221,8 +221,8 @@ export default {
         url: auth,
         data: {
           strategy: "local",
-          email: "dbadmin@dwtech.in",
-          password: "admin@123",
+          email: "dbadmin@diwks.com",
+          password: "Admin@!23",
         },
         type: "POST",
       }).then(function (data) {
@@ -234,14 +234,16 @@ export default {
             xhr.setRequestHeader("Authorization", "Bearer " + token);
           },
         }).then(function (data1) {
+          console.log(data1.length)
           if(data1){
-          for (var i = 0; i <= data1.data.length - 1; i++) {
-            self.totaltime = self.totaltime + data1.data[i].total_time;
-            self.nooffaqclicks = self.nooffaqclicks + data1.data[i].no_of_clicks;
-            self.agents = self.agents + data1.data[i].agents_clicked;
-            self.website = self.website + data1.data[i].website_clicked;
-            for (var a = 0; a <= data1.data[i].faq_clicked.length - 1; a++) {
-              tempfaqlist.push(data1.data[i].faq_clicked[a]);
+          for (var i = 0; i <= data1.length - 1; i++) {
+            self.totaltime = self.totaltime + data1[i].total_time;
+            self.nooffaqclicks = self.nooffaqclicks + data1[i].no_of_clicks;
+            console.log(data1[i].no_of_clicks)
+            self.agents = self.agents + data1[i].agents_clicked;
+            self.website = self.website + data1[i].website_clicked;
+            for (var a = 0; a <= data1[i].faq_clicked.length - 1; a++) {
+              tempfaqlist.push(data1[i].faq_clicked[a]);
             }
           }
           //faq counts
@@ -258,8 +260,8 @@ export default {
           for (var b = 0; b <= faq.length - 1; b++) {
             self.faq_names.push({ name: faq[b], clicks: counts[b] });
           }
-          self.averageclicks = self.nooffaqclicks / data1.data.length;
-          self.averagetime = self.totaltime / data1.data.length;
+          self.averageclicks = self.nooffaqclicks / data1.length;
+          self.averagetime = self.totaltime / data1.length;
           
           }
         });
